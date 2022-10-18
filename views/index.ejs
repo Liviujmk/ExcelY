@@ -7,9 +7,43 @@
     <title>Add pdf</title>
 </head>
 <body>
-    <form action="/" method="post">
-        <input type="file" name="fileName">
-        <input type="submit" value="ADD">
-    </form>
+    <input type="file" id="file" name="fileName">
+    <button id="upload">Upload</button>
+    <br>
+    <br>
+    <textarea name="" style="width: 300px; height:150px;" id="textarea" cols="30" rows="10"></textarea>
+    <br>
+    <br>
+    <textarea name="" style="width: 300px; height:150px;" id="res" cols="30" rows="10"></textarea>
+    <button id="btn">ARRRRR</button>
+    <script>
+        const upload = document.getElementById('upload');
+        const inputfile = document.getElementById('file');
+        const textarea = document.getElementById('textarea');
+        const res = document.getElementById('res');
+        var ar = ""
+        upload.addEventListener('click', () => {
+            const file = inputfile.files[0];
+            const formData = new FormData();
+            formData.append('pdfFile', file);
+
+            fetch('/', {
+                method: 'POST',
+                body: formData
+            }).then(res => {
+                return res.text()
+            }).then(data => {
+                textarea.value = data
+                ar = data
+                res.value = textarea.value;
+            })
+        })
+        let ar1 = Array.from(res.value);
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', () => {
+            console.log(ar.split(','))
+        })
+
+    </script>
 </body>
 </html>

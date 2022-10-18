@@ -12,28 +12,21 @@ const pdfPath = "C:\\Users\\Luci the admin\\Downloads"
 //url encoded
 app.use(express.urlencoded({ extended: true }));
 
+//app.use file upload
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
+
 app.get('/', (req, res) => res.render('index'));
 
 app.post('/', async(req, res) => {
-    const file = req.body.fileName;
-    if(file) {
-        res.send(req.body.file);
-        const getPDF = async (file) => {
-            let readFileSync = fs.readFileSync(file)
-            try {
-                let pdfExtract = await pdfParse(readFileSync)
-                console.log('File content: ', pdfExtract.text)
-                console.log('Total pages: ', pdfExtract.numpages)
-                console.log('All content: ', pdfExtract.info)
-            } catch (error) {
-                throw new Error(error)
-            }
-        }
-        const pdfRead = `${pdfPath}\\${file}`
-        console.log(pdfRead);
-        getPDF(pdfRead)
+    if(!req.files && !req.files.pdfFile){
+        res.status(400).end();
     }
-    //res.redirect('/');
+
+    pdfParse(req.files.pdfFile).then( pdf => {
+        res.send(pdf.text.trim().split(" "));
+    })
     
 })
 
