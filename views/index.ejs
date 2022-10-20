@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add pdf</title>
+    <%- include("layouts/HtmlHead") %> 
 </head>
 <body>
-    <input type="file" id="file" name="fileName">
+    <h1>Hi, here will be Intercargo records</h1>
+    <br>
+    <br>
+    <a href="companies">Go to companies</a>
+    <br>
+    <br>
+    <a href="/companies/new">Create new company</a>
+    <br>
+    <br>
+    <a href="/companies/asd">Go to company</a>
+    <br>
+    <br>
+    <a href="/companies/:id/records/create">Create new record</a>
+    <br>
+    <br>
+    <a href="/companies/:id/records">Go to records</a>
+    <br>
+    <br>
+
+    <!--<input type="file" id="file" name="fileName">
     <button id="upload">Upload</button>
     <br>
     <br>
@@ -16,12 +32,24 @@
     <br>
     <textarea name="" style="width: 300px; height:150px;" id="res" cols="30" rows="10"></textarea>
     <button id="btn">ARRRRR</button>
+    <br><br>
+    <button id="d">Show data</button>-->
     <script>
-        const upload = document.getElementById('upload');
+        /*const upload = document.getElementById('upload');
         const inputfile = document.getElementById('file');
         const textarea = document.getElementById('textarea');
         const res = document.getElementById('res');
+        const btn1 = document.getElementById('d');
         var ar = ""
+        var ar1 = ""
+        var ar2 = ""
+        var commandNr = ""
+        var l1Com = ""
+        var l1Ad = ""
+        var ar4 = ""
+        var ar5 = ""
+        var ar6 = ""
+        //https://onlinestringtools.com/split-string
         upload.addEventListener('click', () => {
             const file = inputfile.files[0];
             const formData = new FormData();
@@ -34,15 +62,23 @@
                 return res.text()
             }).then(data => {
                 textarea.value = data
-                ar = data
-                res.value = textarea.value;
+                ar = data.split(".")
+                ar1 = data.split("\n")
+                ar2 = data.split(" ")
+                commandNr = ar[4]
+                l1Com = ar[12].split("\n")[1]
+                l1Ad = ar[12].split("\n")[3]
             })
         })
-        let ar1 = Array.from(res.value);
         const btn = document.getElementById('btn');
         btn.addEventListener('click', () => {
-            console.log(ar.split(','))
+            console.log(ar2);
         })
+        d.addEventListener('click', () => {
+            console.log(commandNr);
+            console.log(l1Com);
+            console.log(l1Ad);
+        })*/
 
     </script>
 </body>
