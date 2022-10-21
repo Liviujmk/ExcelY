@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("layouts/HtmlHead") %> 
+</head>
+<body>
+    <h1>Your truck</h1>
+    <br>
+    <h2>Truck Number: <%= truck.number %></h2>
+    <br>
+    <h2>Records: <br>
+        <% truck.records.forEach(record => { %>
+            <a href=""><%= record.commandNr %></a>
+            <br>
+            <br>
+        <% }) %>
+    </h2>
+    <br>
+    <a href="/companies/<%= company.id %>/trucks/<%= truck.number %>/createRecord">Create record for this truck</a>
+</body>
+</html>

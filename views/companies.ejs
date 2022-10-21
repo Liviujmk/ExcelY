@@ -5,5 +5,12 @@
 </head>
 <body>
     <h1>All companies</h1>
+    <br>
+    <br>
+    <% companies.forEach(company => { %>
+        <a href="/companies/<%= company._id %>"><%= company.name %></a>
+        <br>
+        <br>
+    <% }) %>
 </body>
 </html>

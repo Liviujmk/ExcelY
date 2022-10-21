@@ -12,13 +12,14 @@
     <h2>City: <%= company.city %></h2>
     <h2>Phone: <%= company.phone %></h2>
     <h2>Email: <%= company.email %></h2>
-    <h2>Trucks: <br>
+    <h2>Trucks:
         <% company.trucks.forEach(truck => { %>
-            <a href="/companies/<%= company.id %>/trucks/<%= truck.number %>">See => <%= truck.number %></a>
+            <a href="/trucks/<%= truck.number %>"><%= truck.name %></a>
+            <br>
             <br>
         <% }) %>
     </h2>
     <br>
-    <a href="/companies/<%= company.id %>/createTruck">Create truck for this company</a>
+    <a href="/companies/<%= company.id %>/records">See all records from this company</a>
 </body>
 </html>

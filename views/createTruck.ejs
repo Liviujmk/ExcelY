@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("layouts/HtmlHead") %> 
+</head>
+<body>
+    <h1>Create truck</h1>
+    <br>
+    <form action="/companies/<%= company.id %>/trucks" method="POST">
+        <input type="text" name="number" placeholder="Truck number">
+        <br>
+        <input type="submit" value="Create Company">
+    </form>
+</body>
+</html>

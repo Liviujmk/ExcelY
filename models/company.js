@@ -9,7 +9,28 @@ var companySchema = new mongoose.Schema({
     address: String,
     phone: String,
     email: String,
-    created: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    trucks: [{
+        number: String,
+        records: [{
+            commandNr: String,
+            commandDate: Date,
+            creditNoteNr: String,
+            creditNoteDate: Date,
+            loadings: [{
+                loadCompany: String,
+                loadAddress: String
+            }],
+            unloadings: [{
+                unloadCompany: String,
+                unloadAddress: String
+            }],
+            paymentStatus: {
+                type: String,
+                default: "Not paid"
+            }
+        }]
+    }]
 });
 
 module.exports = mongoose.model('Company', companySchema);

@@ -5,5 +5,19 @@
 </head>
 <body>
     <h1>Create record</h1>
+    <br>
+    <form action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records" method="POST">
+        <input type="text" name="commandNr" placeholder="Command Nr.">
+        <input type="date" name="commandDate" placeholder="CommandDate">
+        <input type="text" name="creditNoteNr" placeholder="creditNoteNr">
+        <input type="date" name="creditNoteDate" placeholder="creditNoteDate">
+        <input type="text" name="loadCompany" placeholder="Loading Place" value="loadcom">
+        <input type="text" name="loadAddress" placeholder="Loading Place" value="loadaddr">
+        <input type="text" name="unloadCompany" placeholder="Unloading place" value="unlcom">
+        <input type="text" name="unloadAddress" placeholder="Unloading place" value="unladdr">
+        <input type="text" name="paymentStatus" placeholder="">
+        <br>
+        <input type="submit" value="Create Record">
+    </form>
 </body>
 </html>
