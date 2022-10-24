@@ -6,16 +6,31 @@
 <body>
     <h1>Create record</h1>
     <br>
+    <br>
+    <button id="addLoad">Add loading</button>
+    <br>
+    <br>
+    <button id="addUnload">Add unloading</button>
     <form action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records" method="POST">
         <input type="text" name="commandNr" placeholder="Command Nr.">
         <input type="date" name="commandDate" placeholder="CommandDate">
         <input type="text" name="creditNoteNr" placeholder="creditNoteNr">
         <input type="date" name="creditNoteDate" placeholder="creditNoteDate">
-        <input type="text" name="loadCompany" placeholder="Loading Place" value="loadcom">
-        <input type="text" name="loadAddress" placeholder="Loading Place" value="loadaddr">
-        <input type="text" name="unloadCompany" placeholder="Unloading place" value="unlcom">
-        <input type="text" name="unloadAddress" placeholder="Unloading place" value="unladdr">
-        <input type="text" name="paymentStatus" placeholder="">
+        <div class="loadings">
+            <div class="load">
+                <input type="text" name="loadCompany" placeholder="Loading Place" value="loadcom">
+                <input type="text" name="loadAddress" placeholder="Loading Place" value="loadaddr">
+            </div>
+        </div>
+        <div class="unloadings">
+            <div class="unload">
+                <input type="text" name="unloadCompany" placeholder="Unloading place" value="unlcom">
+                <input type="text" name="unloadAddress" placeholder="Unloading place" value="unladdr">
+            </div>
+        </div>
+        <input type="text" name="paymentStatus" placeholder="Status">
+        <input type="number" name="km" placeholder="Enter km">
+        <input type="number" name="price" placeholder="Enter price">
         <br>
         <input type="submit" value="Create Record">
     </form>

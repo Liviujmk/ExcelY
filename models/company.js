@@ -14,9 +14,9 @@ var companySchema = new mongoose.Schema({
         number: String,
         records: [{
             commandNr: String,
-            commandDate: Date,
+            commandDate: { type: Date, default: Date.now },
             creditNoteNr: String,
-            creditNoteDate: Date,
+            creditNoteDate: { type: Date, default: Date.now },
             loadings: [{
                 loadCompany: String,
                 loadAddress: String
@@ -28,7 +28,10 @@ var companySchema = new mongoose.Schema({
             paymentStatus: {
                 type: String,
                 default: "Not paid"
-            }
+            },
+            km: Number,
+            price: Number
+
         }]
     }]
 });

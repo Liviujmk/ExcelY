@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 
 // import models
 const Company = require('../models/company')
+//import loadingtypes
 
 //main
 router.get('/', (req, res) => {
@@ -75,6 +76,24 @@ router.get('/companies/:id/trucks/:number', async(req, res) => {
     res.render('truck', { truck: truckArray, company });
 })
 
+router.get('/companies/:id/trucks/:number/records/:commandNr', async(req, res) => {
+    let truckArray = {}
+    const company = await Company.findById(req.params.id);
+    company.trucks.forEach(truck => {
+        if(truck.number === req.params.number){
+            truckArray = truck;
+        }
+    })
+    let recordArray
+    truckArray.records.forEach(record => {
+        if(record.commandNr === req.params.commandNr){
+            recordArray = record;
+        }
+    })
+    console.log(recordArray);
+    res.render('record', { company, record: recordArray });
+})
+
 router.get('/companies/:id/trucks/:number/createRecord', async(req, res) => {
     let truckArray = {}
     const company = await Company.findById(req.params.id);
@@ -88,6 +107,83 @@ router.get('/companies/:id/trucks/:number/createRecord', async(req, res) => {
 
 router.post('/companies/:id/trucks/:number/records', async(req, res) => {
     const company = await Company.findById(req.params.id);
+    /// loading types
+
+    const loadingt1 = [{
+        loadCompany: req.body.loadCompany,
+        loadAddress: req.body.loadAddress
+    }]
+
+    const loadingt2 = [
+        {
+            loadCompany: req.body.loadCompany,
+            loadAddress: req.body.loadAddress
+        },
+        {
+            loadCompany: req.body.loadCompany2,
+            loadAddress: req.body.loadAddress2
+        }
+    ]
+
+    //unloading types
+
+    const unloadingt1 = [
+        {
+            unloadCompany: req.body.unloadCompany,
+            unloadAddress: req.body.unloadAddress
+        }
+    ]
+
+    const unloadingt2 = [
+        {
+            unloadCompany: req.body.unloadCompany,
+            unloadAddress: req.body.unloadAddress
+        },
+        {
+            unloadCompany: req.body.unloadCompany2,
+            unloadAddress: req.body.unloadAddress2
+        }
+
+    ]
+
+    const unloadingt3 = [
+        {
+            unloadCompany: req.body.unloadCompany,
+            unloadAddress: req.body.unloadAddress
+        },
+        {
+            unloadCompany: req.body.unloadCompany2,
+            unloadAddress: req.body.unloadAddress2
+        },
+        {
+            unloadCompany: req.body.unloadCompany3,
+            unloadAddress: req.body.unloadAddress3
+        }    
+    ]
+
+    const unloadingt4 = [
+        {
+            unloadCompany: req.body.unloadCompany,
+            unloadAddress: req.body.unloadAddress
+        },
+        {
+            unloadCompany: req.body.unloadCompany2,
+            unloadAddress: req.body.unloadAddress2
+        },
+        {
+            unloadCompany: req.body.unloadCompany3,
+            unloadAddress: req.body.unloadAddress3
+        },
+        {
+            unloadCompany: req.body.unloadCompany4,
+            unloadAddress: req.body.unloadAddress4
+        }
+    ]
+    const loadings =[]
+    const unloadings = []
+    if(req.body.loadingType === '1'){
+        loadingType = loadingt1;
+    }
     const record = {
         commandNr: req.body.commandNr,
         commandDate: req.body.commandDate,
@@ -101,7 +197,9 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
             unloadCompany: req.body.unloadCompany,
             unloadAddress: req.body.unloadAddress
         }],
-        paymentStatus: req.body.paymentStatus
+        paymentStatus: req.body.paymentStatus,
+        km: req.body.km,
+        price: req.body.price
     }
     company.trucks.forEach(truck => {
         if(truck.number === req.params.number){
