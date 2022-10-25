@@ -33,5 +33,10 @@
     <h3>Command LENGTH: <%= record.km %></h3>
     <br>
     <h3>Command PRICE: <%= record.price %></h3> 
+    <br>
+    <br>
+    <form action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/delete" method="post">
+        <button type="submit">Delete this record</button>
+    </form>
 </body>
 </html>

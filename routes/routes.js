@@ -91,7 +91,7 @@ router.get('/companies/:id/trucks/:number/records/:commandNr', async(req, res) =
         }
     })
     console.log(recordArray);
-    res.render('record', { company, record: recordArray });
+    res.render('record', { company, truck: truckArray, record: recordArray });
 })
 
 router.get('/companies/:id/trucks/:number/createRecord', async(req, res) => {
@@ -201,12 +201,14 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
     if(req.body.unloadingsNr === '4'){
         unloadings = unloadingt4;
     }
-
+    const commandDate = new Date(req.body.commandDate).toLocaleDateString("en-UK");
+    const creditNoteDate = new Date(req.body.creditNoteDate).toLocaleDateString("en-UK");
+    
     const record = {
         commandNr: req.body.commandNr,
-        commandDate: req.body.commandDate.toLocaleDateString(),
+        commandDate,
         creditNoteNr: req.body.creditNoteNr,
-        creditNoteDate: req.body.creditNoteDate.toLocaleDateString(),
+        creditNoteDate,
         loadings,
         unloadings,
         paymentStatus: req.body.paymentStatus,
@@ -222,5 +224,20 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
     res.redirect(`/companies/${company.id}/trucks/${req.params.number}`);
 })
 
+//delete record
+router.post('/companies/:id/trucks/:number/records/:commandNr/delete', async(req, res) => {
+    const company = await Company.findById(req.params.id);
+    company.trucks.forEach(truck => {
+        if(truck.number === req.params.number){
+            truck.records.forEach(record => {
+                if(record.commandNr === req.params.commandNr){
+                    record.remove();
+                }
+            })
+        }
+    })
+    await company.save();
+    res.redirect(`/companies/${company.id}/trucks/${req.params.number}`);
+})
+
 module.exports = router;
-// create one company
