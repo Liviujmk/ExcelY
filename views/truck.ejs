@@ -10,7 +10,7 @@
     <br>
     <h2>Records: <br>
         <% truck.records.forEach(record => { %>
-            <a href=""><%= record.commandNr %></a>
+            <a href="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>"><%= record.commandNr %></a>
             <br>
             <br>
         <% }) %>

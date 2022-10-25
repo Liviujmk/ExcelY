@@ -14,9 +14,9 @@ var companySchema = new mongoose.Schema({
         number: String,
         records: [{
             commandNr: String,
-            commandDate: { type: Date, default: Date.now },
+            commandDate: { type: Date.toLocaleDateString(), default: Date.now },
             creditNoteNr: String,
-            creditNoteDate: { type: Date, default: Date.now },
+            creditNoteDate: { type: Date.toLocaleDateString(), default: Date.now },
             loadings: [{
                 loadCompany: String,
                 loadAddress: String

@@ -179,24 +179,36 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
             unloadAddress: req.body.unloadAddress4
         }
     ]
-    const loadings =[]
-    const unloadings = []
-    if(req.body.loadingType === '1'){
-        loadingType = loadingt1;
+    let loadings = []
+    let unloadings = []
+    if(req.body.loadingsNr === '1'){
+        loadings = loadingt1;
+    }else
+    if(req.body.loadingsNr === '2'){
+        loadings = loadingt2;
     }
+
+
+    if(req.body.unloadingsNr === '1'){
+        unloadings = unloadingt1;
+    }else
+    if(req.body.unloadingsNr === '2'){
+        unloadings = unloadingt2;
+    }else
+    if(req.body.unloadingsNr === '3'){
+        unloadings = unloadingt3;
+    }else
+    if(req.body.unloadingsNr === '4'){
+        unloadings = unloadingt4;
+    }
+
     const record = {
         commandNr: req.body.commandNr,
-        commandDate: req.body.commandDate,
+        commandDate: req.body.commandDate.toLocaleDateString(),
         creditNoteNr: req.body.creditNoteNr,
-        creditNoteDate: req.body.creditNoteDate,
-        loadings: [{ 
-            loadCompany: req.body.loadCompany,
-            loadAddress: req.body.loadAddress
-        }],
-        unloadings: [{
-            unloadCompany: req.body.unloadCompany,
-            unloadAddress: req.body.unloadAddress
-        }],
+        creditNoteDate: req.body.creditNoteDate.toLocaleDateString(),
+        loadings,
+        unloadings,
         paymentStatus: req.body.paymentStatus,
         km: req.body.km,
         price: req.body.price

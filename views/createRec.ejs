@@ -16,13 +16,15 @@
         <input type="date" name="commandDate" placeholder="CommandDate">
         <input type="text" name="creditNoteNr" placeholder="creditNoteNr">
         <input type="date" name="creditNoteDate" placeholder="creditNoteDate">
-        <div class="loadings">
+        <div class="loadings" data-loadings="">
+            <input type="hidden" id="loadingsNr" name="loadingsNr" value="1">
             <div class="load">
                 <input type="text" name="loadCompany" placeholder="Loading Place" value="loadcom">
                 <input type="text" name="loadAddress" placeholder="Loading Place" value="loadaddr">
             </div>
         </div>
-        <div class="unloadings">
+        <div class="unloadings" data-unloadings="">
+            <input type="hidden" id="unloadingsNr" name="unloadingsNr" value="1">
             <div class="unload">
                 <input type="text" name="unloadCompany" placeholder="Unloading place" value="unlcom">
                 <input type="text" name="unloadAddress" placeholder="Unloading place" value="unladdr">
