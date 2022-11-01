@@ -1,25 +1,338 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Poppins', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Raleway', sans-serif;
+    /*display: grid;
+    place-items: center;*/
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    background: #ffffff;
+}
+main {
+    text-align: center;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+.container {
+    background: white;
+    padding: 40px 30px 44px;
+    text-align: center;
+    border-radius: 24px;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+    font-size: 3em;
+    color: #16425b;
 }
 
 form {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
-    max-width: 450px;
-    gap: 1rem;
+    display: grid;
+    place-items: center;
+    gap: 16px;
+}
+
+input {
+    width: 100%;
+    border-radius: 4px;
+    height: 35px;
+    padding: 2px 10px;
+    border: none;
+    outline: none;
+    transition: all .2s ease-in-out;
+
+}
+
+input:not(#submit) {
+    border: 1px solid #7e7e7ea6;
+}
+
+input:not(#submit):focus {
+    border: 1px solid #2d2d2d;
+}
+
+div input {
+    margin: 1px;
+}
+
+#submit {
+    height: 50px;
+    background: #216de7c1;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background: #216ce7;
+}
+
+#submit:focus {
+    background: #1d54ac;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+}
+
+article {
+    height: 10em;
+    width: 16em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3a7ca5;
+    margin: 1em;
+    border-radius: 15px;
+    transition: transform 1s;
+}
+
+article:hover {
+    transform: scale(1.2);
+}
+
+article a {
+    color: #eeeeee;
+    font-size: 2em;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    padding: 8px 20px;
+    border-radius: 0;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: #003249;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #003249;
+    box-shadow: 0px 15px 20px #00324982;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.form-input-material {
+    --input-default-border-color: rgb(7, 6, 6);
+    --input-border-bottom-color: white;
+}
+
+
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10%;
+    padding: 50px 40px;
+    color: #003249;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109), 0 1px 1px rgba(128, 128, 128, 0.155), 0 2.1px 2.1px rgba(128, 128, 128, 0.195), 0 4.4px 4.4px rgba(128, 128, 128, 0.241), 0 12px 12px rgba(128, 128, 128, 0.35);
+}
+
+.login-form h1 {
+    margin: 0 0 24px 0;
+}
+
+.login-form .form-input-material {
+    margin: 12px 0;
+}
+
+.login-form .btn {
+    width: 100%;
+    margin: 18px 0 9px 0;
+}
+
+.form-control-material {
+    height: 2em;
+    width: 16em;
+    border-radius: 5px;
+}
+
+a.link {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.bn54 {
+    margin-top: 3em;
+    padding: 12px 20px;
+    position: relative;
+    outline: none;
+    text-decoration: none;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    opacity: 1;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.bn54 .bn54span {
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    color: #000000;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+}
+
+.bn54:hover {
+    animation: bn54rotate 0.7s ease-in-out both;
+}
+
+.bn54:hover .bn54span {
+    animation: bn54storm 0.7s ease-in-out both;
+    animation-delay: 0.06s;
+}
+
+@keyframes bn54rotate {
+    0% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+
+    25% {
+        transform: rotate(3deg) translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: rotate(-3deg) translate3d(0, 0, 0);
+    }
+
+    75% {
+        transform: rotate(1deg) translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+}
+
+@keyframes bn54storm {
+    0% {
+        transform: translate3d(0, 0, 0) translateZ(0);
+    }
+
+    25% {
+        transform: translate3d(4px, 0, 0) translateZ(0);
+    }
+
+    50% {
+        transform: translate3d(-3px, 0, 0) translateZ(0);
+    }
+
+    75% {
+        transform: translate3d(2px, 0, 0) translateZ(0);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0) translateZ(0);
+    }
+}
+
+@media screen and (max-width: 850px) {
+    section {
+        flex-direction: column;
+    }
+
+}
+
+table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    row-gap: 1px;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+    color: #fff;
+}
+
+table tr {
+    background-color: rgba(255, 255, 255, 0.849);
+    border: 2px solid #000000;
+    padding: .35em;
+    margin: 1px;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background-color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
 }

@@ -4,18 +4,69 @@
     <%- include("layouts/HtmlHead") %> 
 </head>
 <body>
-    <h1>Your truck</h1>
-    <br>
-    <h2>Truck Number: <%= truck.number %></h2>
-    <br>
-    <h2>Records: <br>
-        <% truck.records.forEach(record => { %>
-            <a href="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>"><%= record.commandNr %></a>
-            <br>
-            <br>
-        <% }) %>
-    </h2>
-    <br>
-    <a href="/companies/<%= company.id %>/trucks/<%= truck.number %>/createRecord">Create record for this truck</a>
+    <main>
+        <table>
+            <caption>Truck Number: <%= truck.number %></caption>
+            <thead>
+                <tr>
+                    <th scope="col">CommandNr</th>
+                    <th scope="col">CommandDate</th>
+                    <th scope="col">creditNoteNr</th>
+                    <th scope="col">CreditNoteDate</th>
+                    <th scope="col">Loading Company</th>
+                    <th scope="col">Loading Adress</th>
+                    <th scope="col">Unloading Company</th>
+                    <th scope="col">Unloading Adress</th>
+                    <th scope="col">KM</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% truck.records.forEach(record => { %>
+                    <tr id="row2" class="row">
+                        <td data-label="CommandNr"><%=record.commandNr%></td>
+                        <td data-label="Command Date"><%=record.commandDate%></td>
+                        <td data-label="CreditNoteNR"><%=record.creditNoteNr%></td>
+                        <td data-label="CreditNoteDate"><%=record.creditNoteDate%></td>
+                        <td data-label="Loading Company" class="lc">
+                            <% record.loadings.forEach(l => { %>
+                                <span><%=l.loadCompany%></span>
+                            <% }) %>  
+                        </td>
+                        <td data-label="Loading Adress" class="la">
+                            <% record.loadings.forEach(l => { %>
+                                <span><%=l.loadAddress%></span>
+                            <% }) %>     
+                        </td>
+                        <td data-label="Unloading Company" class="lb">
+                            <% record.unloadings.forEach(u => { %>
+                                <span><%=u.unloadCompany%></span>
+                            <% }) %>
+                        </td>
+                        <td data-label="Unloading Adress" class="ld">
+                            <% record.unloadings.forEach(u => { %>
+                                <span><%=u.unloadAddress%></span>
+                            <% }) %>
+                        </td>
+                        <td data-label="KM"><%=record.km%></td>
+                        <td data-label="Price"><%=record.price%></td>
+                        <td data-label="Payment"><span><%=record.paymentStatus%></span></td>
+                        <td data-label="Actions">
+                            <button value="Delete" class="delete" onclick="delete_row(2)">
+                                <ion-icon name="trash"></ion-icon>
+                            </button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <a class="link" href="/companies/<%= company.id %>/trucks/<%= truck.number %>/createRecord">
+            <button class="bn54">
+                <span class="bn54span">ADD RECORD</span>
+            </button>
+        </a>
+    </main>
 </body>
 </html>

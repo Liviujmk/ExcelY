@@ -4,13 +4,20 @@
     <%- include("layouts/HtmlHead") %> 
 </head>
 <body>
-    <h1>All companies</h1>
-    <br>
-    <br>
-    <% companies.forEach(company => { %>
-        <a href="/companies/<%= company._id %>"><%= company.name %></a>
-        <br>
-        <br>
-    <% }) %>
+    <main>
+        <h2>All companies</h2>
+        <section>
+            <% companies.forEach(company => { %>
+                    <article>
+                        <a href="/companies/<%= company._id %>"><%= company.name %></a>
+                    </article>
+            <% }) %>
+        </section>
+        <a class="link" href="/companies/new">
+            <button class="bn54">
+                <span class="bn54span">ADD Company</span>
+            </button>
+        </a>
+    </main>
 </body>
 </html>

@@ -4,21 +4,21 @@
     <%- include("layouts/HtmlHead") %> 
 </head>
 <body>
-    <h1>Your company</h1>
-    <br>
-    <br>
-    <h2>Name: <%= company.name %></h2>
-    <h2>Address: <%= company.address %></h2>
-    <h2>City: <%= company.city %></h2>
-    <h2>Phone: <%= company.phone %></h2>
-    <h2>Email: <%= company.email %></h2>
-    <h2>Trucks: <br>
-        <% company.trucks.forEach(truck => { %>
-            <a href="/companies/<%= company.id %>/trucks/<%= truck.number %>">See => <%= truck.number %></a>
-            <br>
-        <% }) %>
-    </h2>
-    <br>
-    <a href="/companies/<%= company.id %>/createTruck">Create truck for this company</a>
+    <main>
+        <h2>Name: <%= company.name %></h2>
+        <h2>Trucks:</h2>
+        <section>
+            <% company.trucks.forEach(truck => { %>
+                <article>
+                    <a href="/companies/<%= company._id %>/trucks/<%= truck.number %>"><%= truck.number %></a>
+                </article>
+            <% }) %>
+        </section>
+        <a href="/companies/<%= company.id %>/createTruck" class="link">
+            <button class="bn54">
+                <span class="bn54span">ADD TRUCK</span>
+            </button>
+        </a>
+    </main>
 </body>
 </html>

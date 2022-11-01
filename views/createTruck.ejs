@@ -4,12 +4,12 @@
     <%- include("layouts/HtmlHead") %> 
 </head>
 <body>
-    <h1>Create truck</h1>
-    <br>
-    <form action="/companies/<%= company.id %>/trucks" method="POST">
-        <input type="text" name="number" placeholder="Truck number">
+    <h1>Add Truck</h1>
+    <form action="/companies/<%= company._id %>/trucks" method="POST" required class="login-form">
+        <input type="text" name="number" id="number" placeholder="Registration number" autocomplete="off"
+                class="form-control-material" required />
         <br>
-        <input type="submit" value="Create Company">
+        <input type="submit" class="btn btn-primary btn-ghost" value="Add truck">
     </form>
 </body>
 </html>
