@@ -389,7 +389,7 @@ table th {
     }
 }
 
-.form.del {
+form.del {
     display: block;
 }
 
