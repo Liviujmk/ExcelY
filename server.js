@@ -24,4 +24,4 @@ app.use(fileUpload());
 //import routes
 const routes = require('./routes/routes.js');
 app.use('/', routes);
-app.listen(process.env.PORT || 5000, () => console.log(`Example app listening on port !`));
+app.listen(5000 || process.env.PORT, () => console.log(`Example app listening on port !`));
