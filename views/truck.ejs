@@ -55,7 +55,7 @@
                         <td data-label="Price">&euro; <%=record.price%></td>
                         <td data-label="Payment"><span><%=record.paymentStatus%></span></td>
                         <td data-label="Actions">
-                            <form action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/delete" method="post">
+                            <form class="del" action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/delete" method="post">
                                 <button type="submit" value="Delete" class="delete" name="<%= record.commandNr %>">
                                     <ion-icon name="trash"></ion-icon>
                                 </button>

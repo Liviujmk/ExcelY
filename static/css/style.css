@@ -389,6 +389,10 @@ table th {
     }
 }
 
+.form.del {
+    display: block;
+}
+
 .delete {
     border: 1px solid #ce1515;
     padding: 7px;
