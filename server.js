@@ -42,5 +42,5 @@ app.use('/', routes);
     
 })*/
 
-app.listen(port || process.env.PORT, () => console.log(`Example app listening on port ${port}!`));
+app.listen(5000 || process.env.PORT, () => console.log(`Example app listening on port !`));
 
