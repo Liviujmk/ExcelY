@@ -1,9 +1,6 @@
 const express = require('express');
 const app = express();
 const port = 1113;
-const pdfParse = require('pdf-parse')
-const fs = require('fs')
-const pdfPath = "C:\\Users\\Luci the admin\\Downloads"
 const fileUpload = require('express-fileupload');
 
 //dotnev
@@ -27,20 +24,4 @@ app.use(fileUpload());
 //import routes
 const routes = require('./routes/routes.js');
 app.use('/', routes);
-
-
-/*app.get('/', (req, res) => res.render('index'));*/
-
-/*app.post('/', async(req, res) => {
-    if(!req.files && !req.files.pdfFile){
-        res.status(400).end();
-    }
-
-    pdfParse(req.files.pdfFile).then( pdf => {
-        res.send(pdf.text.trim());
-    })
-    
-})*/
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
+app.listen(5000 || process.env.PORT, () => console.log(`Example app listening on port !`));
