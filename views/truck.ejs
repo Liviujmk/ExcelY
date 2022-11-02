@@ -5,6 +5,7 @@
 </head>
 <body>
     <main>
+        <h3>Truck Number: <%= truck.number %></h3>
         <table>
             <caption>Truck Number: <%= truck.number %></caption>
             <thead>
@@ -51,12 +52,14 @@
                             <% }) %>
                         </td>
                         <td data-label="KM"><%=record.km%></td>
-                        <td data-label="Price"><%=record.price%></td>
+                        <td data-label="Price">&euro; <%=record.price%></td>
                         <td data-label="Payment"><span><%=record.paymentStatus%></span></td>
                         <td data-label="Actions">
-                            <button value="Delete" class="delete" onclick="delete_row(2)">
-                                <ion-icon name="trash"></ion-icon>
-                            </button>
+                            <form action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/delete" method="post">
+                                <button type="submit" value="Delete" class="delete" name="<%= record.commandNr %>">
+                                    <ion-icon name="trash"></ion-icon>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <% }) %>

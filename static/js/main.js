@@ -4,6 +4,8 @@ const loadingDivContainer = document.querySelector('.loadings');
 const unloadingDivContainer = document.querySelector('.unloadings');
 const addLoadingBtn = document.querySelector('#addLoad');
 const addUnloadingBtn = document.querySelector('#addUnload');
+const removeLoadingBtn = document.querySelector('#removeLoad');
+const removeUnloadingBtn = document.querySelector('#removeUnload');
 const data_loading = document.querySelector('[data-loadings]');
 const data_unloading = document.querySelector('[data-unloadings]');
 const loadingsNr = document.getElementById('loadingsNr');
@@ -41,3 +43,21 @@ function addUnloading() {
 addLoadingBtn.addEventListener('click', addLoading);
 addUnloadingBtn.addEventListener('click', addUnloading);
 
+function removeLoading() {
+    const load = document.querySelector('.load');
+    loadingDivContainer.removeChild(load);
+    loadCount--
+    data_loading.setAttribute('data-loadings', loadCount);
+    loadingsNr.setAttribute('value', loadCount);
+}
+
+function removeUnloading() {
+    const unload = document.querySelector('.unload');
+    unloadingDivContainer.removeChild(unload);
+    unloadCount--
+    data_unloading.setAttribute('data-unloadings', unloadCount);
+    unloadingsNr.setAttribute('value', unloadCount);
+}
+
+removeLoadingBtn.addEventListener('click', removeLoading);
+removeUnloadingBtn.addEventListener('click', removeUnloading);

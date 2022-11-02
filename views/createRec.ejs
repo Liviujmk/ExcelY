@@ -3,15 +3,17 @@
 <head>
     <%- include("layouts/HtmlHead") %> 
 </head>
-<body>
-    <main>
+<body class="rf">
+    <main class="recmain">
         <h1>Create record</h1>
-        <br>
-        <br>
-        <button id="addLoad">Add loading</button>
-        <br>
-        <br>
-        <button id="addUnload">Add unloading</button>
+        <div class="grup">
+            <button id="addLoad">Add loading</button>
+            <button id="addUnload">Add unloading</button>
+        </div>
+        <div class="grup">
+            <button id="removeLoad">Remove loading</button>
+            <button id="removeUnload">Remove unloading</button>
+        </div>
         <form action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records" method="POST" class="formTabel">
             <input type="text" name="commandNr" placeholder="Command Nr.">
             <input type="date" name="commandDate" placeholder="CommandDate">

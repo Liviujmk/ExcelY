@@ -3,13 +3,16 @@
 <head>
     <%- include("layouts/HtmlHead") %> 
 </head>
-<body>
-    <h1>Add Truck</h1>
-    <form action="/companies/<%= company._id %>/trucks" method="POST" required class="login-form">
-        <input type="text" name="number" id="number" placeholder="Registration number" autocomplete="off"
+<body class="mf">
+    <main>
+        <h1>Add Truck</h1>
+        <form action="/companies/<%= company._id %>/trucks" method="POST" required class="login-form">
+            <div class="form-input-material">
+                <input type="text" name="number" id="number" placeholder="Registration number" autocomplete="off"
                 class="form-control-material" required />
-        <br>
-        <input type="submit" class="btn btn-primary btn-ghost" value="Add truck">
-    </form>
+            </div>
+            <input type="submit" class="btn btn-primary btn-ghost" value="Add truck">
+        </form>
+    </main>
 </body>
 </html>

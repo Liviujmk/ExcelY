@@ -3,13 +3,16 @@
 <head>
     <%- include("layouts/HtmlHead") %> 
 </head>
-<body>
-    <h1>Create company</h1>
-    <form action="/companies" method="POST" required class="login-form">
-        <input type="text" name="name" id="username" placeholder="Company Name" autocomplete="off"
-                class="form-control-material" required />
-        <br>
-        <input type="submit" class="btn btn-primary btn-ghost" value="Add company">
-    </form>
+<body class="mf">
+    <main>
+        <h1>Create company</h1>
+        <form action="/companies" method="POST" required class="login-form">
+            <div class="form-input-material">
+                <input type="text" name="name" id="username" placeholder="Company Name" autocomplete="off"
+                        class="form-control-material" required />
+            </div>
+            <input type="submit" class="btn btn-primary btn-ghost" value="Add company">
+        </form>
+    </main>
 </body>
 </html>

@@ -12,11 +12,44 @@ main {
     text-align: center;
 }
 
+main.recmain {
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.mf{
+    font-family: 'Raleway', sans-serif;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background: #3a7ca5;
+}
+body.rf{
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+a {
+    font-size: 2rem;
+    color: #00008a;
+}
+
 .container {
     background: white;
     padding: 40px 30px 44px;
     text-align: center;
     border-radius: 24px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #19193c;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -30,9 +63,17 @@ h2 {
 form {
     margin: 0;
     width: 100%;
-    display: grid;
-    place-items: center;
+    display: flex;
     gap: 16px;
+    flex-direction: column;
+}
+
+.formTabel input {
+    width: auto;
+}
+.load, .unload {
+    display: flex;
+    justify-content: space-between;
 }
 
 input {
@@ -106,6 +147,13 @@ article a {
     align-items: center;
 }
 
+.grup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 0;
+}
+
 .btn {
     padding: 8px 20px;
     border-radius: 0;
@@ -134,7 +182,7 @@ article a {
     flex-direction: column;
     align-items: center;
     margin-bottom: 10%;
-    padding: 50px 40px;
+    padding: 2.7rem;
     color: #003249;
     background: white;
     border-radius: 10px;
@@ -147,6 +195,8 @@ article a {
 
 .login-form .form-input-material {
     margin: 12px 0;
+    display: inherit;
+    width: 100%;
 }
 
 .login-form .btn {
@@ -156,7 +206,6 @@ article a {
 
 .form-control-material {
     height: 2em;
-    width: 16em;
     border-radius: 5px;
 }
 
@@ -285,7 +334,10 @@ table th {
     font-size: .85em;
     letter-spacing: .1em;
     text-transform: uppercase;
-    background-color: #fff;
+    background-color: #000;
+    color: #fff;
+    border-right: 1px solid #fff;
+    word-break: break-all;
 }
 
 @media screen and (max-width: 600px) {
@@ -335,4 +387,24 @@ table th {
     table td:last-child {
         border-bottom: 0;
     }
+}
+
+.delete {
+    border: 1px solid #ce1515;
+    padding: 7px;
+    font-size: 16px;
+    display: inline-flex;
+    border-radius: 3px;
+    color: #ce1515;
+    transition: all 0.3s ease;
+}
+
+.delete:hover {
+    background-color: #b91616;
+    color: rgb(255, 255, 255);
+}
+
+.delete:active, .delete:focus {
+    background-color: #6f1111;
+    color: rgb(255, 255, 255);
 }
