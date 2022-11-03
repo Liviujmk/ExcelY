@@ -31,7 +31,7 @@ var companySchema = new mongoose.Schema({
                 default: "Not paid"
             },
             km: Number,
-            price: String
+            price: Number
 
         }]
     }]
