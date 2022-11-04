@@ -13,6 +13,7 @@ var companySchema = new mongoose.Schema({
     trucks: [{
         number: String,
         records: [{
+            createdAt : { type: Date, default: Date.now() },
             commandNr: String,
             commandDate: { type: String, default: Date.now() },
             creditNoteNr: String,
