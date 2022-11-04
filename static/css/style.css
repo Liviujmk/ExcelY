@@ -352,6 +352,8 @@ tr.total-amount {
     font-weight: bold;
     font-size: 1.2em;
     background-color: #9bc1ff;
+    position: sticky;
+    bottom: -1px;
 }
 
 @media screen and (max-width: 600px) {
