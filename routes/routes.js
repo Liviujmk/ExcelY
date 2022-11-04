@@ -75,7 +75,26 @@ router.get('/companies/:id/trucks/:number', async(req, res) => {
             truckArray = truck;
         }
     })
-    res.render('truck', { truck: truckArray, company });
+    const sorty = truckArray.records.sort(function(a,b) {
+        a = a.commandDate.split('/').reverse().join('');
+        b= b.commandDate.split('/').reverse().join('');
+        return a > b ? 1 : a < b ? -1 : 0;
+    });
+    const totalAmount = (truckArray) => {
+        let total = 0;
+        truckArray.records.forEach(record => {
+            total += record.price;
+        })
+        return total;
+    }
+    const totalKm = (truckArray) => {
+        let total = 0;
+        truckArray.records.forEach(record => {
+            total += record.km;
+        })
+        return total;
+    }
+    res.render('truck', { truck: truckArray, company, totalAmount: totalAmount(truckArray), totalKm: totalKm(truckArray) });
 })
 
 router.get('/companies/:id/trucks/:number/records/:commandNr', async(req, res) => {

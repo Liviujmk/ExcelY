@@ -348,6 +348,12 @@ table th {
     word-break: break-all;
 }
 
+tr.total-amount {
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: #9bc1ff;
+}
+
 @media screen and (max-width: 600px) {
     table {
         border: 0;

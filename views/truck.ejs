@@ -63,6 +63,12 @@
                         </td>
                     </tr>
                 <% }) %>
+                    <tr class="total-amount">
+                        <td colspan="8">Total Amount and Kilometers</td>
+                        <td><%= totalKm %> km</td>
+                        <td>&euro; <%= totalAmount %></td>
+                        <td colspan="2"></td>
+                    </tr>
             </tbody>
         </table>
         <a class="link" href="/companies/<%= company.id %>/trucks/<%= truck.number %>/createRecord">
