@@ -60,6 +60,11 @@ h2 {
     color: #16425b;
 }
 
+h3 {
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
 form {
     margin: 0;
     width: 100%;
@@ -161,6 +166,8 @@ article a {
     border-radius: 5px;
     background-color: #003249;
     color: #fff;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
 }
 
 .btn:hover {
@@ -178,6 +185,7 @@ article a {
 
 
 .login-form {
+    width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -15,7 +15,7 @@
             <button id="removeUnload">Remove unloading</button>
         </div>
         <form action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records" method="POST" class="formTabel">
-            <input type="text" name="commandNr" placeholder="Command Nr.">
+            <input type="text" name="commandNr" placeholder="Command Nr." required>
             <input type="date" name="commandDate" placeholder="CommandDate">
             <input type="text" name="creditNoteNr" placeholder="creditNoteNr">
             <input type="date" name="creditNoteDate" placeholder="creditNoteDate">
