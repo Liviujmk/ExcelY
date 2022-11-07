@@ -27,7 +27,9 @@
             <tbody>
                 <% truck.records.forEach(record => { %>
                     <tr id="row2" class="row">
-                        <td data-label="CommandNr"><%=record.commandNr%></td>
+                        <td data-label="CommandNr">
+                            <a href="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/edit"><%=record.commandNr%></a>
+                        </td>
                         <td data-label="Command Date"><%=record.commandDate%></td>
                         <td data-label="CreditNoteNR"><%=record.creditNoteNr%></td>
                         <td data-label="CreditNoteDate"><%=record.creditNoteDate%></td>

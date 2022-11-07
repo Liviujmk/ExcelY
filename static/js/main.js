@@ -45,7 +45,7 @@ addUnloadingBtn.addEventListener('click', addUnloading);
 
 function removeLoading() {
     const load = document.querySelector('.load');
-    loadingDivContainer.removeChild(load);
+    loadingDivContainer.removeChild(loadingDivContainer.lastElementChild);
     loadCount--
     data_loading.setAttribute('data-loadings', loadCount);
     loadingsNr.setAttribute('value', loadCount);
@@ -53,7 +53,7 @@ function removeLoading() {
 
 function removeUnloading() {
     const unload = document.querySelector('.unload');
-    unloadingDivContainer.removeChild(unload);
+    unloadingDivContainer.removeChild(unloadingDivContainer.lastElementChild);
     unloadCount--
     data_unloading.setAttribute('data-unloadings', unloadCount);
     unloadingsNr.setAttribute('value', unloadCount);

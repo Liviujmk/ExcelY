@@ -200,6 +200,28 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
             unloadAddress: req.body.unloadAddress4
         }
     ]
+    const unloadingt5 = [
+        {
+            unloadCompany: req.body.unloadCompany,
+            unloadAddress: req.body.unloadAddress
+        },
+        {
+            unloadCompany: req.body.unloadCompany2,
+            unloadAddress: req.body.unloadAddress2
+        },
+        {
+            unloadCompany: req.body.unloadCompany3,
+            unloadAddress: req.body.unloadAddress3
+        },
+        {
+            unloadCompany: req.body.unloadCompany4,
+            unloadAddress: req.body.unloadAddress4
+        },
+        {
+            unloadCompany: req.body.unloadCompany5,
+            unloadAddress: req.body.unloadAddress5
+        }
+    ]
     let loadings = []
     let unloadings = []
     if(req.body.loadingsNr === '1'){
@@ -221,11 +243,19 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
     }else
     if(req.body.unloadingsNr === '4'){
         unloadings = unloadingt4;
+    }else
+    if(req.body.unloadingsNr === '5'){
+        unloadings = unloadingt5;
     }
-    const commandDate = new Date(req.body.commandDate).toLocaleDateString("en-UK");
-    const creditNoteDate = new Date(req.body.creditNoteDate).toLocaleDateString("en-UK");
+
+    let commandDate = new Date(req.body.commandDate).toLocaleDateString("en-UK");
+    const [day1, month1, year1] = commandDate.split('/');
+    commandDate = `${year1}-${month1}-${day1}`;
+    let creditNoteDate = new Date(req.body.creditNoteDate).toLocaleDateString("en-UK");
+    const [day2, month2, year2] = creditNoteDate.split('/');
+    creditNoteDate = `${year2}-${month2}-${day2}`;
     
-    const record = {
+    const recordData = {
         commandNr: req.body.commandNr,
         commandDate,
         creditNoteNr: req.body.creditNoteNr,
@@ -238,12 +268,78 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
     }
     company.trucks.forEach(truck => {
         if(truck.number === req.params.number){
-            truck.records.push(record);
+            //find record first
+            let recordFound = false;
+            truck.records.forEach(record => {
+                if(record.commandNr === req.body.commandNr){
+                    recordFound = true;
+                    record.commandDate = commandDate;
+                    record.creditNoteNr = req.body.creditNoteNr;
+                    record.creditNoteDate = creditNoteDate;
+                    record.paymentStatus = req.body.paymentStatus;
+                    record.km = req.body.km;
+                    record.price = req.body.price;
+                }
+            })
+            if(!recordFound) truck.records.push(recordData);
         }
     })
     await company.save();
     res.redirect(`/companies/${company.id}/trucks/${req.params.number}`);
 })
+
+//edit record
+router.get('/companies/:id/trucks/:number/records/:commandNr/edit', async(req, res) => {
+    let truckArray = {}
+    const company = await Company.findById(req.params.id);
+    company.trucks.forEach(truck => {
+        if(truck.number === req.params.number){
+            truckArray = truck;
+        }
+    })
+    let recordArray
+    truckArray.records.forEach(record => {
+        if(record.commandNr === req.params.commandNr){
+            recordArray = record;
+        }
+    })
+    res.render('editRec', { company, truck: truckArray, record: recordArray });
+})
+
+/*router.post('/companies/:id/trucks/:number/records/:commandNr/edit', async(req, res) => {
+    const company = await Company.findById(req.params.id);
+    const commandDate = new Date(req.body.commandDate).toLocaleDateString("en-UK");
+    const creditNoteDate = new Date(req.body.creditNoteDate).toLocaleDateString("en-UK");
+    company.trucks.forEach(truck => {
+        if(truck.number === req.params.number){
+            truck.records.forEach(record => {
+                if(record.commandNr === req.params.commandNr){
+                    record.commandDate = commandDate;
+                    record.creditNoteNr = req.body.creditNoteNr;
+                    record.creditNoteDate = creditNoteDate;
+                    record.loadings = [
+                        {
+                            loadCompany: req.body.loadCompany,
+                            loadAddress: req.body.loadAddress
+                        }
+                    ]
+                    record.unloadings = [
+                        {
+                            unloadCompany: req.body.unloadCompany,
+                            unloadAddress: req.body.unloadAddress
+                        }
+                    ]
+                    record.paymentStatus = req.body.paymentStatus;
+                    record.km = req.body.km;
+                    record.price = req.body.price;
+                }
+            })
+        }
+    })
+    await company.save();
+    res.redirect(`/companies/${company.id}/trucks/${req.params.number}`);
+})*/
+
 
 //delete record
 router.post('/companies/:id/trucks/:number/records/:commandNr/delete', async(req, res) => {

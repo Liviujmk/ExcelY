@@ -33,7 +33,7 @@ body.rf{
     background: #ffffff;
 }
 
-a {
+a:not(td a) {
     font-size: 2rem;
     color: #00008a;
 }
@@ -144,7 +144,7 @@ article:hover {
 }
 
 article a {
-    color: #eeeeee;
+    color: #eeeeee !important;
     font-size: 2em;
     text-decoration: none;
     display: flex;
