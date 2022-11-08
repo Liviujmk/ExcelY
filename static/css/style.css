@@ -73,6 +73,10 @@ form {
     flex-direction: column;
 }
 
+form.onlyBtn {
+    display: block;
+}
+
 .formTabel input {
     width: auto;
 }
@@ -103,6 +107,27 @@ input:not(#submit):focus {
 div input {
     margin: 1px;
 }
+button {
+    cursor: pointer;
+}
+button.main-btn {
+    border-radius: 4px;
+    background-color: #fff;
+    padding: .5rem 1rem;
+    border: 2px solid rgb(255, 0, 0);
+    font-weight: 700;
+    transition: all .2s ease-in-out;
+}
+
+button.main-btn:hover {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+button.main-btn:active, button.main-btn:focus {
+    background-color: #9a0000;
+    color: #fff;
+}
 
 #submit {
     height: 50px;
@@ -122,6 +147,7 @@ div input {
 
 section {
     display: flex;
+    flex-wrap: wrap ;
     justify-content: center;
     align-items: center;
     margin-top: 5em;
@@ -225,6 +251,7 @@ a.link {
 
 .bn54 {
     margin-top: 3em;
+    margin-bottom: 3em;
     padding: 12px 20px;
     position: relative;
     outline: none;
@@ -336,6 +363,12 @@ table th,
 table td {
     padding: .625em;
     text-align: center;
+    word-break: break-all;
+}
+
+td.notLink {
+    background-color: rgb(159, 0, 0);
+    color: #fff;
 }
 
 table th {
@@ -345,7 +378,6 @@ table th {
     background-color: #000;
     color: #fff;
     border-right: 1px solid #fff;
-    word-break: break-all;
 }
 
 tr.total-amount {
@@ -406,17 +438,20 @@ tr.total-amount {
 }
 
 form.del {
-    display: block;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .delete {
-    border: 1px solid #ce1515;
+    border: 1.5px solid #ce1515;
     padding: 7px;
     font-size: 16px;
     display: inline-flex;
     border-radius: 3px;
     color: #ce1515;
     transition: all 0.3s ease;
+    background-color: #fff;
 }
 
 .delete:hover {
@@ -427,4 +462,51 @@ form.del {
 .delete:active, .delete:focus {
     background-color: #6f1111;
     color: rgb(255, 255, 255);
+}
+
+.edit {
+    border: 1.5px solid #149621;
+    padding: 7px;
+    font-size: 16px;
+    display: inline-flex;
+    border-radius: 3px;
+    color: #149621;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    background-color: #fff;
+}
+.edit:hover {
+    background-color: #0b8906;
+    color: rgb(255, 255, 255);
+}
+
+.edit:active, .edit:focus {
+    background-color: #0d5212;
+    color: rgb(255, 255, 255);
+}
+
+/* print styles */
+
+@media print {
+    body td, body th {
+        color: #000 !important;
+    }
+    th {
+        border: none !important;
+    }
+    .actionsRecord {
+        display: none;
+    }
+    a.link {
+        display: none;
+    }
+    table caption {
+        display: none;
+    }
+    form {
+        display: none;
+    }
+    button {
+        display: none;
+    }
 }

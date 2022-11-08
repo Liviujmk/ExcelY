@@ -257,8 +257,10 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
     
     const recordData = {
         commandNr: req.body.commandNr,
+        commandLink: req.body.commandLink,
         commandDate,
         creditNoteNr: req.body.creditNoteNr,
+        creditNoteLink: req.body.creditNoteLink,
         creditNoteDate,
         loadings,
         unloadings,
@@ -274,7 +276,9 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
                 if(record.commandNr === req.body.commandNr){
                     recordFound = true;
                     record.commandDate = commandDate;
+                    record.commandLink = req.body.commandLink;
                     record.creditNoteNr = req.body.creditNoteNr;
+                    record.creditNoteLink = req.body.creditNoteLink;
                     record.creditNoteDate = creditNoteDate;
                     record.paymentStatus = req.body.paymentStatus;
                     record.km = req.body.km;

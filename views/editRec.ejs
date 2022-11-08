@@ -16,8 +16,10 @@
         </div>
         <form action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records" method="POST" class="formTabel">
             <input type="text" name="commandNr" placeholder="Command Nr." required value="<%= record.commandNr %>"/>
+            <input type="text" name="commandLink" placeholder="Command link" value="<%= record.commandLink %>">
             <input type="date" name="commandDate" placeholder="CommandDate" value="<%= record.commandDate %>"/>
             <input type="text" name="creditNoteNr" placeholder="creditNoteNr" value="<%= record.creditNoteNr %>"/>
+            <input type="text" name="creditNoteLink" placeholder="CreditNote link" value="<%= record.creditNoteLink %>">
             <input type="date" name="creditNoteDate" placeholder="creditNoteDate" value="<%= record.creditNoteDate %>"/>
             <div class="loadings" data-loadings="">
                 <input type="hidden" id="loadingsNr" name="loadingsNr" value="<%= record.loadings.length %>"/>

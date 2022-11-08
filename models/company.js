@@ -15,8 +15,10 @@ var companySchema = new mongoose.Schema({
         records: [{
             createdAt : { type: Date, default: Date.now() },
             commandNr: String,
+            commandLink: String,
             commandDate: { type: String, default: Date.now() },
             creditNoteNr: String,
+            creditNoteLink: String,
             creditNoteDate: { type: String, default: Date.now() },
             loadings: [{
                 loadCompany: String,
