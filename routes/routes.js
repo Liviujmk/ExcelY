@@ -97,6 +97,17 @@ router.get('/companies/:id/trucks/:number', async(req, res) => {
     res.render('truck', { truck: truckArray, company, totalAmount: totalAmount(truckArray), totalKm: totalKm(truckArray) });
 })
 
+router.post('/companies/:id/trucks/:number/delete', async(req, res) => {
+    const company = await Company.findById(req.params.id);
+    company.trucks.forEach(truck => {
+        if(truck.number === req.params.number){
+            truck.remove();
+        }
+    })
+    await company.save();
+    res.redirect(`/companies/${req.params.id}/trucks/`);
+})
+
 router.get('/companies/:id/trucks/:number/records/:commandNr', async(req, res) => {
     let truckArray = {}
     const company = await Company.findById(req.params.id);
