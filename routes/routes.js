@@ -275,6 +275,7 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
         creditNoteDate,
         loadings,
         unloadings,
+        cmrLink: req.body.cmrLink,
         paymentStatus: req.body.paymentStatus,
         km: req.body.km,
         price: req.body.price
@@ -291,6 +292,7 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
                     record.creditNoteNr = req.body.creditNoteNr;
                     record.creditNoteLink = req.body.creditNoteLink;
                     record.creditNoteDate = creditNoteDate;
+                    record.cmrLink = req.body.cmrLink,
                     record.paymentStatus = req.body.paymentStatus;
                     record.km = req.body.km;
                     record.price = req.body.price;

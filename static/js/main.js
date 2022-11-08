@@ -19,8 +19,8 @@ function addLoading() {
     const load = document.createElement('div');
     load.classList.add('load');
     load.innerHTML = `
-        <input type="text" name="loadCompany${loadCount}" placeholder="Loading com ${loadCount}">
-        <input type="text" name="loadAddress${loadCount}" placeholder="Loading address ${loadCount}">
+        <input type="text" name="loadCompany${loadCount}" placeholder="Loading placee ${loadCount}">
+        <input type="text" name="loadAddress${loadCount}" placeholder="Loading addressee ${loadCount}">
     `
     loadingDivContainer.append(load);
     data_loading.setAttribute('data-loadings', loadCount);
@@ -32,7 +32,7 @@ function addUnloading() {
     const unload = document.createElement('div');
     unload.classList.add('unload');
     unload.innerHTML = `
-        <input type="text" name="unloadCompany${unloadCount}" placeholder="Unloading com ${unloadCount}">
+        <input type="text" name="unloadCompany${unloadCount}" placeholder="Unloading place ${unloadCount}">
         <input type="text" name="unloadAddress${unloadCount}" placeholder="Unloading adress ${unloadCount}">
     `
     unloadingDivContainer.append(unload);
@@ -44,19 +44,23 @@ addLoadingBtn.addEventListener('click', addLoading);
 addUnloadingBtn.addEventListener('click', addUnloading);
 
 function removeLoading() {
-    const load = document.querySelector('.load');
-    loadingDivContainer.removeChild(loadingDivContainer.lastElementChild);
-    loadCount--
-    data_loading.setAttribute('data-loadings', loadCount);
-    loadingsNr.setAttribute('value', loadCount);
+    if(loadCount > 1) {
+        const load = document.querySelector('.load');
+        loadingDivContainer.removeChild(loadingDivContainer.lastElementChild);
+        loadCount--
+        data_loading.setAttribute('data-loadings', loadCount);
+        loadingsNr.setAttribute('value', loadCount);
+    }
 }
 
 function removeUnloading() {
-    const unload = document.querySelector('.unload');
-    unloadingDivContainer.removeChild(unloadingDivContainer.lastElementChild);
-    unloadCount--
-    data_unloading.setAttribute('data-unloadings', unloadCount);
-    unloadingsNr.setAttribute('value', unloadCount);
+    if(unloadCount > 1) {
+        const unload = document.querySelector('.unload');
+        unloadingDivContainer.removeChild(unloadingDivContainer.lastElementChild);
+        unloadCount--
+        data_unloading.setAttribute('data-unloadings', unloadCount);
+        unloadingsNr.setAttribute('value', unloadCount);
+    }
 }
 
 removeLoadingBtn.addEventListener('click', removeLoading);

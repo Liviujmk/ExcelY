@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 //schema
 
 
-var companySchema = new mongoose.Schema({
+const companySchema = new mongoose.Schema({
     name: String,
     description: String,
     address: String,
@@ -28,6 +28,7 @@ var companySchema = new mongoose.Schema({
                 unloadCompany: String,
                 unloadAddress: String
             }],
+            cmrLink: String,
             paymentStatus: {
                 type: String,
                 default: "Not paid"

@@ -443,7 +443,19 @@ tr.total-amount {
 form.del {
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    gap: 4.5px;
+}
+
+@media screen and (min-width: 1320px ) {
+    form.del {
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 600px ) {
+    form.del {
+        flex-direction: row;
+    }
 }
 
 .delete {
@@ -485,6 +497,27 @@ form.del {
 
 .edit:active, .edit:focus {
     background-color: #0d5212;
+    color: rgb(255, 255, 255);
+}
+
+.cmr {
+    border: 1.5px solid #0d34a0;
+    padding: 7px;
+    font-size: 16px;
+    display: inline-flex;
+    border-radius: 3px;
+    color: #0d34a0;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    background-color: #fff;
+}
+.cmr:hover {
+    background-color: #050c6b;
+    color: rgb(255, 255, 255);
+}
+
+.cmr:active, .cmr:focus {
+    background-color: #09154e;
     color: rgb(255, 255, 255);
 }
 

@@ -6,7 +6,7 @@
 <body>
     <main>
         <h3>Truck Number: <%= truck.number %></h3>
-        <form method="post" class="onlyBtn" action="/companies/<%= company.id %>/trucks/<%= truck.number %>/delete">
+        <form method="POST" class="onlyBtn" action="/companies/<%= company.id %>/trucks/<%= truck.number %>/delete">
             <button type="submit" class="main-btn">Delete truck</button>
         </form>
         <table>
@@ -32,7 +32,7 @@
                     <tr id="row2" class="row">
                         <% if(record.commandLink) { %> 
                             <td data-label="CommandNr">
-                                <a href="<%=record.commandLink%>"><%=record.commandNr%></a>
+                                    <a href="<%=record.commandLink%>"><%=record.commandNr%></a>
                             </td>
                             <% } else { %>
                             <td data-label="CommandNr" class="notLink"><%=record.commandNr%></td>
@@ -40,7 +40,7 @@
                         <td data-label="Command Date"><%=record.commandDate%></td>
                         <% if(record.creditNoteLink) { %> 
                             <td data-label="CommandNr">
-                                <a href="<%=record.creditNoteLink%>"><%=record.creditNoteNr%></a>
+                                    <a href="<%=record.creditNoteLink%>"><%=record.creditNoteNr%></a>
                             </td>
                             <% } else { %>
                             <td data-label="CreditNoteNR" class="notLink"><%=record.creditNoteNr%></td>
@@ -75,9 +75,10 @@
                         <% } %>
                         <td data-label="Actions" class="actionsRecord">
                             <form class="del" action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/delete" method="post">
-                                <a href="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/edit" class="edit"><ion-icon name="create-outline"></ion-icon></a>
-                                <button type="submit" value="Delete" class="delete" name="<%= record.commandNr %>">
-                                    <ion-icon name="trash"></ion-icon>
+                                <a title="Edit record" href="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/edit" class="edit"><ion-icon name="construct-outline"></ion-icon></a>
+                                <a title="See CMR" href="<%=record.cmrLink%>" class="cmr"><ion-icon name="document-text-outline"></ion-icon></a>
+                                <button title="Delete record" type="submit" value="Delete" class="delete" name="<%= record.commandNr %>">
+                                    <ion-icon name="trash-outline"></ion-icon>
                                 </button>
                             </form>
                         </td>
