@@ -19,8 +19,8 @@ function addLoading() {
     const load = document.createElement('div');
     load.classList.add('load');
     load.innerHTML = `
-        <input type="text" name="loadCompany${loadCount}" placeholder="Loading placee ${loadCount}">
-        <input type="text" name="loadAddress${loadCount}" placeholder="Loading addressee ${loadCount}">
+        <input type="text" name="loadCompany${loadCount}" placeholder="Loading place ${loadCount}">
+        <input type="text" name="loadAddress${loadCount}" placeholder="Loading address ${loadCount}">
     `
     loadingDivContainer.append(load);
     data_loading.setAttribute('data-loadings', loadCount);
