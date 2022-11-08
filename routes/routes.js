@@ -105,7 +105,7 @@ router.post('/companies/:id/trucks/:number/delete', async(req, res) => {
         }
     })
     await company.save();
-    res.redirect(`/companies/${req.params.id}/trucks/`);
+    res.redirect(`/companies/${req.params.id}`);
 })
 
 router.get('/companies/:id/trucks/:number/records/:commandNr', async(req, res) => {

@@ -74,7 +74,10 @@ form {
 }
 
 form.onlyBtn {
-    display: block;
+    position: absolute;
+    width: auto;
+    right: 8px;
+    top: 6%;
 }
 
 .formTabel input {
