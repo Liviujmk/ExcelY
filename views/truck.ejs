@@ -74,10 +74,10 @@
                             <td data-label="Payment" class="notLink"><span><%=record.paymentStatus%></span></td>
                         <% } %>
                         <td data-label="Actions" class="actionsRecord">
-                            <form class="del" action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/delete" method="post">
-                                <a title="Edit record" href="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= record.commandNr %>/edit" class="edit"><ion-icon name="construct-outline"></ion-icon></a>
+                            <form class="del" action="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= encodeURIComponent(record.commandNr) %>/delete" method="post">
+                                <a title="Edit record" href="/companies/<%= company.id %>/trucks/<%= truck.number %>/records/<%= encodeURIComponent(record.commandNr) %>/edit" class="edit"><ion-icon name="construct-outline"></ion-icon></a>
                                 <a title="See CMR" href="<%=record.cmrLink%>" class="cmr"><ion-icon name="document-text-outline"></ion-icon></a>
-                                <button title="Delete record" type="submit" value="Delete" class="delete" name="<%= record.commandNr %>">
+                                <button title="Delete record" type="submit" value="Delete" class="delete" name="<%= encodeURIComponent(record.commandNr) %>">
                                     <ion-icon name="trash-outline"></ion-icon>
                                 </button>
                             </form>

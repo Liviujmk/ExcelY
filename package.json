@@ -19,6 +19,7 @@
     "mongoose": "^6.6.6",
     "nodemon": "^2.0.20",
     "pdf-parse": "^1.1.1",
-    "pdfreader": "^2.0.0"
+    "pdfreader": "^2.0.0",
+    "slugify": "^1.6.5"
   }
 }
