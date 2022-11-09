@@ -425,10 +425,6 @@ tr.total-amount {
     }
 
     table td::before {
-        /*
-      * aria-label has no advantage, it won't be read inside a table
-      content: attr(aria-label);
-      */
         content: attr(data-label);
         float: left;
         font-weight: bold;
@@ -437,6 +433,11 @@ tr.total-amount {
 
     table td:last-child {
         border-bottom: 0;
+    }
+    form.onlyBtn {
+        top: auto;
+        bottom: 0;
+        right: 33%;
     }
 }
 
