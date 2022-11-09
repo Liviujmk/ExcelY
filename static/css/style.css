@@ -7,6 +7,7 @@ body {
     text-align: center;
     min-height: 100vh;
     background: #ffffff;
+    position: relative;
 }
 main {
     text-align: center;
@@ -435,7 +436,7 @@ tr.total-amount {
         border-bottom: 0;
     }
     form.onlyBtn {
-        top: auto;
+        top: unset;
         bottom: 0;
         right: 33%;
     }
