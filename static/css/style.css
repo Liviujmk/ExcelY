@@ -437,8 +437,10 @@ tr.total-amount {
     }
     form.onlyBtn {
         top: unset;
-        bottom: 0;
-        right: 33%;
+        bottom: -50px;
+        right: 35%;
+        margin-top: 24px;
+        z-index: 10;
     }
 }
 
