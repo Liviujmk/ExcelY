@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const port = 1113;
 const fileUpload = require('express-fileupload');
 
 //dotnev
