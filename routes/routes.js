@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 
 // import models
 const Company = require('../models/company')
+const Event = require('../models/event')
 //import loadingtypes
 
 //main
@@ -24,6 +25,16 @@ router.get('/companies', async (req, res) => {
     }
 })
 
+router.get('/events', async (req, res) => {
+    try {
+        const events = await Event.find().sort({ createdAt: -1 });
+        res.render('event', { events });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
+
 // create one company
 router.get('/companies/new', (req, res) => {
     res.render('createCom')
@@ -40,6 +51,9 @@ router.post('/companies', async (req, res) => {
 
     try {
         await company.save();
+        await Event.create({
+            description: `Company ${company.name} created at ${company.createdAt}`
+        })
         res.redirect('/companies');
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -64,6 +78,9 @@ router.post('/companies/:id/trucks', async(req, res) => {
     }
     company.trucks.push(truck);
     await company.save();
+    await Event.create({
+        description: `Truck ${truck.number} created at ${company.createdAt}`
+    })
     res.redirect(`/companies/${company.id}`);
 })
 
@@ -80,12 +97,12 @@ router.get('/companies/:id/trucks/:number', async(req, res) => {
         b= b.commandDate.split('/').reverse().join('');
         return a > b ? 1 : a < b ? -1 : 0;
     });
-    const totalAmount = (truckArray) => {
+    const totalAmount = (truckArrayParam) => {
         let total = 0;
-        truckArray.records.forEach(record => {
+        truckArrayParam.records.forEach(record => {
             total += record.price;
         })
-        return total;
+        return total.toFixed(2);
     }
     const totalKm = (truckArray) => {
         let total = 0;
@@ -105,6 +122,9 @@ router.post('/companies/:id/trucks/:number/delete', async(req, res) => {
         }
     })
     await company.save();
+    await Event.create({
+        description: `Truck ${req.params.number} deleted at ${company.createdAt}`
+    })
     res.redirect(`/companies/${req.params.id}`);
 })
 
@@ -302,6 +322,10 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
         }
     })
     await company.save();
+    await Event.create({
+        description: `Record ${req.body.commandNr} was created/edited`
+    })
+
     res.redirect(`/companies/${company.id}/trucks/${req.params.number}`);
 })
 
@@ -371,6 +395,9 @@ router.post('/companies/:id/trucks/:number/records/:commandNr/delete', async(req
         }
     })
     await company.save();
+    await Event.create({
+        description: `Record ${req.params.commandNr} was deleted`
+    })
     res.redirect(`/companies/${company.id}/trucks/${req.params.number}`);
 })
 
