@@ -9,6 +9,12 @@
         <form method="POST" class="onlyBtn" action="/companies/<%= company.id %>/trucks/<%= truck.number %>/delete">
             <button type="submit" class="main-btn">Delete truck</button>
         </form>
+        <div id="select-year">
+            <div class="btn-group">
+                <button>2022</button>
+                <button>2023</button>
+            </div>
+        </div>
         <table>
             <caption>Truck Number: <%= truck.number %></caption>
             <thead>
@@ -37,7 +43,7 @@
                             <% } else { %>
                             <td data-label="CommandNr" class="notLink"><%=record.commandNr%></td>
                         <% } %>
-                        <td data-label="Command Date"><%=record.commandDate%></td>
+                        <td class="date" data-label="Command Date"><%=record.commandDate%></td>
                         <% if(record.creditNoteLink) { %> 
                             <td data-label="CommandNr">
                                     <a href="<%=record.creditNoteLink%>"><%=record.creditNoteNr%></a>
@@ -99,5 +105,26 @@
             </button>
         </a>
     </main>
+    <script>
+        //when clicking on 2022 or 2023 button, it will show the records of that year
+        const btns = document.querySelectorAll('.btn-group button');
+        
+        //add active class when clicking on a button
+        btns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                btns.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                //hide all rows and show only the ones with the same year
+                const rows = document.querySelectorAll('.date');
+                rows.forEach(row => {
+                    if(row.innerText.includes(this.innerText)) {
+                        row.parentElement.style.display = 'table-row';
+                    } else {
+                        row.parentElement.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
