@@ -33,6 +33,7 @@
                     <th scope="col" class="actionsRecord">Actions</th>
                 </tr>
             </thead>
+            <% if(truck.records) { %>
             <tbody>
                 <% truck.records.forEach(record => { %>
                     <tr id="row2" class="row">
@@ -98,6 +99,7 @@
                         <td colspan="1" class="actionsRecord"></td>
                     </tr>
             </tbody>
+            <% } %>
         </table>
         <a class="link" href="/companies/<%= company.id %>/trucks/<%= truck.number %>/createRecord">
             <button class="bn54">

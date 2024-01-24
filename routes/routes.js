@@ -28,6 +28,7 @@ router.get('/companies', async (req, res) => {
 router.get('/events', async (req, res) => {
     try {
         const events = await Event.find().sort({ createdAt: -1 });
+        console.log(events)
         res.render('event', { events });
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -61,17 +62,17 @@ router.post('/companies', async (req, res) => {
 })
 
 
-router.get('/companies/:id', async(req, res) => {
+router.get('/companies/:id', async (req, res) => {
     const company = await Company.findById(req.params.id);
     res.render('company', { company });
 })
 
-router.get('/companies/:id/createTruck', async(req, res) => {
+router.get('/companies/:id/createTruck', async (req, res) => {
     const company = await Company.findById(req.params.id);
     res.render('createTruck', { company });
 })
 
-router.post('/companies/:id/trucks', async(req, res) => {
+router.post('/companies/:id/trucks', async (req, res) => {
     const company = await Company.findById(req.params.id);
     const truck = {
         number: req.body.number
@@ -84,61 +85,73 @@ router.post('/companies/:id/trucks', async(req, res) => {
     res.redirect(`/companies/${company.id}`);
 })
 
-router.get('/companies/:id/trucks/:number', async(req, res) => {
+router.get('/companies/:id/trucks/:number', async (req, res) => {
     let truckArray = {}
     const company = await Company.findById(req.params.id);
+    // // remove 3rd element from company.trucks
+    // company.trucks[3].remove();
+    // company.save()
     company.trucks.forEach(truck => {
-        if(truck.number === req.params.number){
+        // console.log(truck) 
+        if (truck.number === req.params.number) {
             truckArray = truck;
         }
     })
-    const sorty = truckArray.records.sort(function(a,b) {
+    /*const sorty = truckArray.records.sort(function(a,b) {
         a = a.commandDate.split('/').reverse().join('');
         b= b.commandDate.split('/').reverse().join('');
         return a > b ? 1 : a < b ? -1 : 0;
-    });
-    const totalAmount = (truckArrayParam) => {
+    });*/
+    
+    let totalAmount, totalKm;
+
+    totalAmount = (truckArrayParam) => {
         let total = 0;
-        truckArrayParam.records.forEach(record => {
-            total += record.price;
-        })
+        if (truckArrayParam.records) {
+            truckArrayParam.records.forEach(record => {
+                total += record.price;
+            })
+        }
         return total.toFixed(2);
     }
-    const totalKm = (truckArray) => {
+    totalKm = (truckArray) => {
         let total = 0;
-        truckArray.records.forEach(record => {
-            total += record.km;
-        })
+        if (truckArray.records) {
+            truckArray.records.forEach(record => {
+                total += record.km;
+            })
+        }
         return total;
     }
-    res.render('truck', { truck: truckArray, company, totalAmount: totalAmount(truckArray), totalKm: totalKm(truckArray) });
+
+    res.render('truck', { truck: truckArray, company, totalAmount: totalAmount(truckArray) || 0, totalKm: totalKm(truckArray) || 0 });
 })
 
-router.post('/companies/:id/trucks/:number/delete', async(req, res) => {
+router.post('/companies/:id/trucks/:number/delete', async (req, res) => {
     const company = await Company.findById(req.params.id);
     company.trucks.forEach(truck => {
-        if(truck.number === req.params.number){
+        if (truck.number === req.params.number) {
             truck.remove();
         }
     })
     await company.save();
     await Event.create({
-        description: `Truck ${req.params.number} deleted at ${company.createdAt}`
+        description: `Truck ${req.params.number} deleted at ${company.name}`
     })
     res.redirect(`/companies/${req.params.id}`);
 })
 
-router.get('/companies/:id/trucks/:number/records/:commandNr', async(req, res) => {
+router.get('/companies/:id/trucks/:number/records/:commandNr', async (req, res) => {
     let truckArray = {}
     const company = await Company.findById(req.params.id);
     company.trucks.forEach(truck => {
-        if(truck.number === req.params.number){
+        if (truck.number === req.params.number) {
             truckArray = truck;
         }
     })
     let recordArray
     truckArray.records.forEach(record => {
-        if(record.commandNr === req.params.commandNr){
+        if (record.commandNr === req.params.commandNr) {
             recordArray = record;
         }
     })
@@ -146,18 +159,18 @@ router.get('/companies/:id/trucks/:number/records/:commandNr', async(req, res) =
     res.render('record', { company, truck: truckArray, record: recordArray });
 })
 
-router.get('/companies/:id/trucks/:number/createRecord', async(req, res) => {
+router.get('/companies/:id/trucks/:number/createRecord', async (req, res) => {
     let truckArray = {}
     const company = await Company.findById(req.params.id);
     company.trucks.forEach(truck => {
-        if(truck.number === req.params.number){
+        if (truck.number === req.params.number) {
             truckArray = truck;
         }
     })
     res.render('createRec', { truck: truckArray, company });
 })
 
-router.post('/companies/:id/trucks/:number/records', async(req, res) => {
+router.post('/companies/:id/trucks/:number/records', async (req, res) => {
     const company = await Company.findById(req.params.id);
     /// loading types
 
@@ -210,7 +223,7 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
         {
             unloadCompany: req.body.unloadCompany3,
             unloadAddress: req.body.unloadAddress3
-        }    
+        }
     ]
 
     const unloadingt4 = [
@@ -255,29 +268,29 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
     ]
     let loadings = []
     let unloadings = []
-    if(req.body.loadingsNr === '1'){
+    if (req.body.loadingsNr === '1') {
         loadings = loadingt1;
-    }else
-    if(req.body.loadingsNr === '2'){
-        loadings = loadingt2;
-    }
+    } else
+        if (req.body.loadingsNr === '2') {
+            loadings = loadingt2;
+        }
 
 
-    if(req.body.unloadingsNr === '1'){
+    if (req.body.unloadingsNr === '1') {
         unloadings = unloadingt1;
-    }else
-    if(req.body.unloadingsNr === '2'){
-        unloadings = unloadingt2;
-    }else
-    if(req.body.unloadingsNr === '3'){
-        unloadings = unloadingt3;
-    }else
-    if(req.body.unloadingsNr === '4'){
-        unloadings = unloadingt4;
-    }else
-    if(req.body.unloadingsNr === '5'){
-        unloadings = unloadingt5;
-    }
+    } else
+        if (req.body.unloadingsNr === '2') {
+            unloadings = unloadingt2;
+        } else
+            if (req.body.unloadingsNr === '3') {
+                unloadings = unloadingt3;
+            } else
+                if (req.body.unloadingsNr === '4') {
+                    unloadings = unloadingt4;
+                } else
+                    if (req.body.unloadingsNr === '5') {
+                        unloadings = unloadingt5;
+                    }
 
     let commandDate = new Date(req.body.commandDate).toLocaleDateString("en-UK");
     const [day1, month1, year1] = commandDate.split('/');
@@ -285,7 +298,7 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
     let creditNoteDate = new Date(req.body.creditNoteDate).toLocaleDateString("en-UK");
     const [day2, month2, year2] = creditNoteDate.split('/');
     creditNoteDate = `${year2}-${month2}-${day2}`;
-    
+
     const recordData = {
         commandNr: req.body.commandNr,
         commandLink: req.body.commandLink,
@@ -301,11 +314,11 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
         price: req.body.price
     }
     company.trucks.forEach(truck => {
-        if(truck.number === req.params.number){
+        if (truck.number === req.params.number) {
             //find record first
             let recordFound = false;
             truck.records.forEach(record => {
-                if(record.commandNr === req.body.commandNr){
+                if (record.commandNr === req.body.commandNr) {
                     recordFound = true;
                     record.commandDate = commandDate;
                     record.commandLink = req.body.commandLink;
@@ -313,12 +326,12 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
                     record.creditNoteLink = req.body.creditNoteLink;
                     record.creditNoteDate = creditNoteDate;
                     record.cmrLink = req.body.cmrLink,
-                    record.paymentStatus = req.body.paymentStatus;
+                        record.paymentStatus = req.body.paymentStatus;
                     record.km = req.body.km;
                     record.price = req.body.price;
                 }
             })
-            if(!recordFound) truck.records.push(recordData);
+            if (!recordFound) truck.records.push(recordData);
         }
     })
     await company.save();
@@ -330,17 +343,17 @@ router.post('/companies/:id/trucks/:number/records', async(req, res) => {
 })
 
 //edit record
-router.get('/companies/:id/trucks/:number/records/:commandNr/edit', async(req, res) => {
+router.get('/companies/:id/trucks/:number/records/:commandNr/edit', async (req, res) => {
     let truckArray = {}
     const company = await Company.findById(req.params.id);
     company.trucks.forEach(truck => {
-        if(truck.number === req.params.number){
+        if (truck.number === req.params.number) {
             truckArray = truck;
         }
     })
     let recordArray
     truckArray.records.forEach(record => {
-        if(record.commandNr === req.params.commandNr){
+        if (record.commandNr === req.params.commandNr) {
             recordArray = record;
         }
     })
@@ -383,12 +396,12 @@ router.get('/companies/:id/trucks/:number/records/:commandNr/edit', async(req, r
 
 
 //delete record
-router.post('/companies/:id/trucks/:number/records/:commandNr/delete', async(req, res) => {
+router.post('/companies/:id/trucks/:number/records/:commandNr/delete', async (req, res) => {
     const company = await Company.findById(req.params.id);
     company.trucks.forEach(truck => {
-        if(truck.number === req.params.number){
+        if (truck.number === req.params.number) {
             truck.records.forEach(record => {
-                if(record.commandNr === req.params.commandNr){
+                if (record.commandNr === req.params.commandNr) {
                     record.remove();
                 }
             })

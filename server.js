@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload');
 require('dotenv').config();
 //connect to mongo db
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DB_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(`mongodb+srv://Liviu:Liviu@cluster--1.5nsas.mongodb.net/ExcelY?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
     console.log("MongoDB connected");
 })
